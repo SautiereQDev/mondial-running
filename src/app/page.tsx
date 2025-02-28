@@ -1,13 +1,11 @@
 "use client";
-import Banner from "@/components/Banner";
-import {useState} from "react";
+import Hero from "@/components/Hero";
 
 export default function HomePage() {
 
-	const [firstVisit, setFirstVisit] = useState(true);
-
 	return (
 		<div>
+			<Hero/>
 		</div>
 	)
 }
