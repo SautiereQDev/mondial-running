@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Hero() {
 	return (
-		<div className="flex gap-26 max-h-[663px] pt-26">
+		<div className="max-w-[85vw] mx-auto flex gap-26 max-h-[663px] py-26">
 			<div className="flex gap-[52px] flex-col justify-center">
 				<div className="flex gap-[36px] flex-col">
 					<p className="font-[montserrat] text-6xl font-bold">Trouvez des vêtements qui vous donnent envie d&#39;aller

@@ -26,7 +26,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
 		<html lang="fr" className={`${montserrat.variable} ${open_sans.variable} antialiased`}>
 		<body>
 		{firstVisit && <Banner/>}
-		<div className="max-w-[85vw] mx-auto font-[open-sans]">
+		<div className="font-[open-sans]">
 			<Navbar/>
 			{children}
 		</div>
