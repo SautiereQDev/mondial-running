@@ -6,9 +6,9 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['var(--font-open-sans)', 'sans-serif'],
+				sans: ['var(--font-lexend)', 'sans-serif'],
 				montserrat: ['var(--font-montserrat)', 'sans-serif'],
-				opensans: ['var(--font-open-sans)', 'sans-serif'],
+				lexend: ['var(--font-lexend)', 'sans-serif'],
 			},
 		},
 	},

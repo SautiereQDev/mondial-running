@@ -30,7 +30,7 @@
     "title": "Used Jeans with a unique design",
     "price": 200,
     "rating": 2.78,
-    "reduction": -10,
+    "reduction": 10,
     "oldPrice": 220
   }
 ]

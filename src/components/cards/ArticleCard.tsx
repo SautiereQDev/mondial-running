@@ -15,9 +15,9 @@ export default function ArticleCard({imgSrc, price, oldPrice, title, reduction, 
 	}
 
 	return (
-		<div className="font-[montserrat] pb-18">
+		<div>
 			<Image src={imgSrc} alt={`Illustration de ${title}`} width={295} height={295} className="rounded-xl max-h-[295]"/>
-			<h3 className='font-bold text-xl pt-3 pb-2'>{title}</h3>
+			<h3 className='font-bold text-xl pt-3 pb-2 font-[montserrat]'>{title}</h3>
 			<div className="flex gap-1 flex-col">
 				<div className="flex items-center">
 					{rating && <Stars rating={rating}/>}
