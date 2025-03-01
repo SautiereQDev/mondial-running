@@ -3,6 +3,9 @@ import Hero from "@/components/Hero";
 import BrandBanner from "@/components/BrandBanner";
 import ArticlesSection from "@/components/ArticlesSection";
 import articles from "@/data/articles.json";
+import BrowseByPractice from "@/components/BrowseByPractice";
+import React from "react";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function HomePage() {
 
@@ -11,6 +14,10 @@ export default function HomePage() {
 			<Hero/>
 			<BrandBanner/>
 			<ArticlesSection title="Les nouveautés" articles={articles}/>
+			<hr className="my-18"/>
+			<ArticlesSection title="Les meilleures ventes" articles={articles}/>
+			<BrowseByPractice/>
+			<TestimonialsSection/>
 		</div>
 	)
 }
