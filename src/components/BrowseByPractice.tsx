@@ -38,15 +38,15 @@ const photos: Photo[] & { link: string } = [
 
 export default function BrowseByPractice() {
 	return (
-		<section className="bg-[#F2F0F1] max-w-[85vw] mx-auto rounded-4xl py-2 px-4">
-			<h3 className="text-5xl font-bold font-[montserrat] text-center my-16">RECHERCHE PAR PRATIQUE</h3>
+		<section className="bg-[#F2F0F1] max-w-[85vw] mx-auto rounded-4xl py-2 mb-20 pb-10">
+			<h3 className="text-5xl font-bold font-[montserrat] text-center my-12">RECHERCHE PAR PRATIQUE</h3>
 			<BentoGrid className="gap-6">
 				{photos.map((photo) => (
 					<BentoGridItem
 						key={photo.key}
 						className="overflow-hidden relative group"
 						header={
-							<Link href={photo.link} className="relative w-full h-full min-h-[200px]">
+							<Link href={photo.link} className="relative w-full h-full">
 								<Image
 									src={photo.src}
 									alt={photo.title}
