@@ -4,5 +4,3 @@ export type Testimonial = {
 	verified: boolean;
 	content: string;
 }
-
-export type TestimonialCardProps = Testimonial

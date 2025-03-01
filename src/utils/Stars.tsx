@@ -1,14 +1,15 @@
-import { Star, StarHalf } from "lucide-react";
+import {Star, StarHalf} from "lucide-react";
 
 interface StarsProps {
 	rating: number;
 	maxRating?: number;
 	showEmpty?: boolean;
+	displayHalf?: boolean;
 }
 
-export default function Stars({ rating, maxRating = 5, showEmpty = false }: StarsProps) {
+export default function Stars({rating, maxRating = 5, showEmpty = false, displayHalf = true}: Readonly<StarsProps>) {
 	// S'assurer que le rating est un nombre valide
-	const safeRating = typeof rating === 'number' && !isNaN(rating) ? Math.max(0, Math.min(rating, maxRating)) : 0;
+	const safeRating = !isNaN(rating) ? Math.max(0, Math.min(rating, maxRating)) : 0;
 
 	// Calculer les étoiles pleines, demi-étoiles et étoiles vides
 	const fullStars = Math.floor(safeRating);
@@ -23,7 +24,7 @@ export default function Stars({ rating, maxRating = 5, showEmpty = false }: Star
 			))}
 
 			{/* Demi-étoile si nécessaire */}
-			{hasHalfStar && <StarHalf fill="#FFC633" stroke="none"/>}
+			{hasHalfStar && displayHalf && <StarHalf fill="#FFC633" stroke="none"/>}
 
 			{/* Étoiles vides - seulement si showEmpty est true */}
 			{showEmpty && Array(emptyStars).fill(0).map((_, index) => (
