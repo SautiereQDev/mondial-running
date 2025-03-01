@@ -1,0 +1,49 @@
+[
+  {
+    "id": 0,
+    "imagesSrc": [
+      "https://cdn.quentinsautiere.com/mondial-running/saucony-endorphin-pro-4-m-S20939-222-0.webp",
+      "https://cdn.quentinsautiere.com/mondial-running/saucony-endorphin-pro-4-m-S20939-222-1.webp",
+      "https://cdn.quentinsautiere.com/mondial-running/saucony-endorphin-pro-4-m-S20939-222-2.webp"
+    ],
+    "name": "Saucony Endorphin Pro 4 M",
+    "description": "La chaussure de running Saucony Endorphin Pro 4 pour homme est conçue pour les coureurs à la recherche de performance et de vitesse. Elle est idéale pour les entraînements et les compétitions de running sur route.",
+    "brand": "Saucony",
+    "stock": 6,
+    "price": 209.99,
+    "sizes": [
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "colors": [
+      {
+        "name": "White Mutant",
+        "hex": "#FFFFFF"
+      },
+      {
+        "name": "Black Mutant",
+        "hex": "#000000"
+      },
+      {
+        "name": "Future Blue",
+        "hex": "#0000FF"
+      }
+    ],
+    "avgRating": 4.5,
+    "sex": "M",
+    "category": [
+      "running"
+    ],
+    "reduction": {
+      "type": "percentage",
+      "value": 10,
+      "startDate": "2022-01-01",
+      "endDate": "2022-12-31"
+    }
+  }
+]

@@ -6,7 +6,6 @@ import articles from "@/data/articles.json";
 import BrowseByPracticeSection from "@/components/BrowseByPracticeSection";
 import React from "react";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import Footer from "@/components/Footer";
 
 export default function HomePage() {
 
@@ -19,7 +18,6 @@ export default function HomePage() {
 			<ArticlesSection title="Les meilleures ventes" articles={articles}/>
 			<BrowseByPracticeSection/>
 			<TestimonialsSection/>
-			<Footer/>
 		</div>
 	)
 }
