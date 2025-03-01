@@ -7,7 +7,7 @@ interface NewsLetterCardProps extends HTMLAttributes<HTMLDivElement> {
 
 export default function NewsLetterCard({className, ...args}: Readonly<NewsLetterCardProps>) {
 	return (
-		<div className={`bg-black flex flex-row justify-between py-9 px-16 text-white rounded-xl ${className ?? ''}`} {...args}>
+		<div className={`bg-black flex flex-row justify-between py-9 px-16 text-white rounded-xl items-center ${className ?? ''}`} {...args}>
 			<p
 				className="font-black font-[montserrat] text-4xl max-w-1/2">{("tenez vous à jour sur nos dernières offres").toUpperCase()}</p>
 			<div className="flex flex-col gap-4 mr-4">
