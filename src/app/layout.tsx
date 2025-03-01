@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Banner from "@/components/Banner";
 import {ReactNode} from "react";
+import CustomBreadCrumb from "@/components/CustomBreadCrumb";
 
 const montserrat = Montserrat({
 	weight: ["400", "500", "600", "700", "800"], // Assurez-vous de spécifier les poids de police nécessaires
@@ -22,7 +23,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children}: Readonly<{ children: ReactNode }>) {
-
 	const firstVisit = true;
 
 	return (
@@ -31,6 +31,7 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode }>
 		{firstVisit && <Banner/>}
 		<div className="font-lexend">
 			<Navbar/>
+			<CustomBreadCrumb/>
 			{children}
 		</div>
 

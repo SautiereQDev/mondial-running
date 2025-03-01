@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import NewsletterCard from '@/components/NewsLetterCard'
+import Link from "next/link";
 
 export default function Footer() {
 	return (
@@ -12,7 +13,24 @@ export default function Footer() {
 							<h4 className="text-xl font-bold font-[montserrat]">Mondial-running</h4><p>We have clothes that suits your
 							style
 							and which you’re proud to wear. From women to men.</p>
-							<Image src="/logos/social.svg" alt='social media links' width={100} height={100}/>
+							<div className="flex flex-row gap-2 mt-2">
+								<Link href="https://x.com">
+									<Image src="/socials/x.svg" alt="X logo" width={24} height={24}/>
+								</Link>
+								<Link href="https://github.com/SautiereQDev">
+									<Image src="/socials/github.svg" alt="GitHub logo"
+												 width={24}
+												 height={24}/>
+								</Link>
+								<Link href="https://instagram.com">
+									<Image src="/socials/instagram.svg" alt="Instagram logo" width={24}
+												 height={24}/>
+								</Link>
+								<Link href="https://facebook.com">
+									<Image src="/socials/facebook.svg" alt="Facebook logo" width={24}
+												 height={24}/>
+								</Link>
+							</div>
 						</div>
 						<div>
 							<h5 className="text-lg font-bold font-[montserrat]">COMPANY</h5>
@@ -52,15 +70,15 @@ export default function Footer() {
 						</div>
 					</div>
 				</div>
-				<hr className=""/>
+				<hr className="border-0.5 border-gray-300"/>
 				<div className="flex flex-row justify-between pt-8 pb-20">
-					<p>Shop.co © 2000-{new Date().getFullYear()}, All Rights Reserved</p>
-					<div className="flex gap-3">
-						<Image src="/logos/visa.svg" alt="logo" width={100} height={100} className="h-[30px] w-[46px]"/>
-						<Image src="/logos/mastercard.svg" alt="logo" width={100} height={100} className="h-[30px] w-[46px]"/>
-						<Image src="/logos/paypal.svg" alt="logo" width={100} height={100} className="h-[30px] w-[46px]"/>
-						<Image src="/logos/applepay.svg" alt="logo" width={100} height={100} className="h-[30px] w-[46px]"/>
-						<Image src="/logos/googlepay.svg" alt="logo" width={100} height={100} className="h-[30px] w-[46px]"/>
+					<p>Mondial-running © 2000-{new Date().getFullYear()}, All Rights Reserved</p>
+					<div className="flex">
+						<Image src="/logos/visa.svg" alt="logo" width={100} height={100} className="h-[50px] w-[70px]"/>
+						<Image src="/logos/mastercard.svg" alt="logo" width={100} height={100} className="h-[50px] w-[70px]"/>
+						<Image src="/logos/paypal.svg" alt="logo" width={100} height={100} className="h-[50px] w-[70px]"/>
+						<Image src="/logos/applepay.svg" alt="logo" width={100} height={100} className="h-[50px] w-[70px]"/>
+						<Image src="/logos/googlepay.svg" alt="logo" width={100} height={100} className="h-[50px] w-[70px]"/>
 					</div>
 				</div>
 			</div>
