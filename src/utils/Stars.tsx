@@ -1,18 +1,34 @@
-import React from 'react'
-import {Star, StarHalf} from "lucide-react";
+import { Star, StarHalf } from "lucide-react";
 
-export default function Stars({rating}: Readonly<{ rating: number }>) {
-	// Arrondir au multiple de 0.5 le plus proche
-	const roundedRating = Math.round(rating * 2) / 2;
-	const fullStars = Math.floor(roundedRating);
-	const hasHalfStar = roundedRating % 1 !== 0;
+interface StarsProps {
+	rating: number;
+	maxRating?: number;
+	showEmpty?: boolean;
+}
+
+export default function Stars({ rating, maxRating = 5, showEmpty = false }: StarsProps) {
+	// S'assurer que le rating est un nombre valide
+	const safeRating = typeof rating === 'number' && !isNaN(rating) ? Math.max(0, Math.min(rating, maxRating)) : 0;
+
+	// Calculer les étoiles pleines, demi-étoiles et étoiles vides
+	const fullStars = Math.floor(safeRating);
+	const hasHalfStar = safeRating % 1 >= 0.5;
+	const emptyStars = Math.max(0, maxRating - fullStars - (hasHalfStar ? 1 : 0));
 
 	return (
 		<div className="flex">
+			{/* Étoiles pleines */}
 			{Array(fullStars).fill(0).map((_, index) => (
-				<Star key={index} fill="#FFC633" stroke="none"/>
+				<Star key={`full-${index}`} fill="#FFC633" stroke="none"/>
 			))}
+
+			{/* Demi-étoile si nécessaire */}
 			{hasHalfStar && <StarHalf fill="#FFC633" stroke="none"/>}
+
+			{/* Étoiles vides - seulement si showEmpty est true */}
+			{showEmpty && Array(emptyStars).fill(0).map((_, index) => (
+				<Star key={`empty-${index}`} fill="none" stroke="#FFC633"/>
+			))}
 		</div>
-	)
+	);
 }
