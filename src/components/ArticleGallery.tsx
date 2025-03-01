@@ -11,7 +11,7 @@ export default function ArticleGallery({imagesSrc}: Readonly<ItemsGalleryProps>)
 	const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
 
 	return (
-		<div className="flex gap-6 fit-content">
+		<div className="flex gap-6 min-w-0">
 			{/* Conteneur des miniatures */}
 			<div className="flex flex-col gap-4 w-24">
 				{imagesSrc.map((src, index) => (
