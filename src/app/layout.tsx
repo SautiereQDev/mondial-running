@@ -3,8 +3,9 @@ import {Lexend, Montserrat} from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Banner from "@/components/Banner";
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 import CustomBreadCrumb from "@/components/CustomBreadCrumb";
+import Footer from "@/components/Footer";
 
 const montserrat = Montserrat({
 	weight: ["400", "500", "600", "700", "800"], // Assurez-vous de spécifier les poids de police nécessaires
@@ -33,8 +34,8 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode }>
 			<Navbar/>
 			<CustomBreadCrumb/>
 			{children}
+			<Footer/>
 		</div>
-
 		</body>
 		</html>
 	);

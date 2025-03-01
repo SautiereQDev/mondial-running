@@ -20,7 +20,7 @@ export default function ArticleCard({imgSrc, price, oldPrice, title, reduction, 
 			<h3 className='font-bold text-xl pt-3 pb-2 font-[montserrat]'>{title}</h3>
 			<div className="flex gap-1 flex-col">
 				<div className="flex items-center">
-					{rating && <Stars rating={rating}/>}
+					{rating && <Stars rating={rating} size={18}/>}
 					{rating &&
 			  <p className="text-sm">{rating}/<span className="text-gray-500">5</span></p>
 					}
