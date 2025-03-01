@@ -24,7 +24,7 @@ export default function TestimonialsSection() {
 	};
 
 	return (
-		<section className="py-12 px-4 max-w-[85vw] mx-auto">
+		<section className="pt-12 mb-44 px-4 max-w-[85vw] mx-auto">
 			<div className="flex justify-between items-center mb-12">
 				<h2 className="text-5xl font-black font-[montserrat]">NOS CLIENTS SATISFAITS</h2>
 				<div className="flex gap-8">
