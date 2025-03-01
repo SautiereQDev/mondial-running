@@ -4,7 +4,7 @@ import {CircleUserRound, ShoppingCart} from "lucide-react";
 
 export default function Navbar() {
 	return (
-		<div className="h-[8.5vh] flex items-center justify-between px-4 sticky right-0 top-0 bg-white">
+		<div className="h-[8.5vh] flex items-center justify-between px-4 sticky right-0 top-0 bg-white z-0">
 			<p className="text-xl font-bold font-[montserrat]">Mondial-running</p>
 				<ul className="flex gap-7">
 					<li>Hommes</li>

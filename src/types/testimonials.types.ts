@@ -5,4 +5,4 @@ export type Testimonial = {
 	content: string;
 }
 
-export interface TestimonialCardProps = Testimonial
+export type TestimonialCardProps = Testimonial

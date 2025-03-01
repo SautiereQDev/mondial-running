@@ -36,7 +36,7 @@ const photos: Photo[] & { link: string } = [
 	},
 ];
 
-export default function BrowseByPractice() {
+export default function BrowseByPracticeSection() {
 	return (
 		<section className="bg-[#F2F0F1] max-w-[85vw] mx-auto rounded-4xl py-2 mb-20 pb-10">
 			<h3 className="text-5xl font-bold font-[montserrat] text-center my-12">RECHERCHE PAR PRATIQUE</h3>
