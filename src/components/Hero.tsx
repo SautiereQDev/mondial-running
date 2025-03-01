@@ -1,6 +1,7 @@
 import React from 'react'
 import {Button} from "@/components/ui/button";
 import Image from "next/image";
+import VerticalSeparator from "@/components/ui/VerticalSeparator";
 
 export default function Hero() {
 	return (
@@ -20,10 +21,12 @@ export default function Hero() {
 							<p className="font-bold text-4xl font-[montserrat]">+ 10</p>
 							<p>Marques internationales</p>
 						</div>
+							<VerticalSeparator/>
 						<div>
 							<p className="font-bold text-4xl font-[montserrat]">+ 2 000</p>
 							<p>Références proposés</p>
 						</div>
+						<VerticalSeparator/>
 						<div>
 							<p className="font-bold text-4xl font-[montserrat]">+ 20 000</p>
 							<p>Clients satisfaits</p>
