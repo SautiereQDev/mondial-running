@@ -25,7 +25,7 @@ export default function ArticleGallery({imagesSrc}: Readonly<ItemsGalleryProps>)
 									activeImageIndex === index ? 'border-2 border-gray-400 ring-1 ring-primary' : 'opacity-80 hover:opacity-100'
 								}`}
 								width={100}
-								height={100}
+								height={120}
 							/>
 						</AspectRatio>
 					</div>
@@ -39,8 +39,8 @@ export default function ArticleGallery({imagesSrc}: Readonly<ItemsGalleryProps>)
 						src={imagesSrc[activeImageIndex]}
 						alt="Active image"
 						className="object-cover shadow-lg rounded-lg border"
-						width={430}
-						height={530}
+						width={500}
+						height={600}
 					/>
 				</AspectRatio>
 			</div>

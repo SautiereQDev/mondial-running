@@ -18,20 +18,9 @@ export default function Page() {
 
 	// Recherche de l'article par ID dans le fichier de test
 	// TODO: remplacer par une requête API
-	const {
-		imagesSrc,
-		avgRating,
-		price,
-		reduction,
-		name,
-		colors,
-		stock,
-		sizes,
-		description
-	} = typedArticles.find(a => a.id === articleId) || typedArticles[0];
+	const data = typedArticles.find(a => a.id === articleId) || typedArticles[0];
 
 	return (
-		<DetailedArticlePage imagesSrc={imagesSrc} avgRating={avgRating} price={price} reduction={reduction} name={name}
-												 description={description} stock={stock} colors={colors} sizes={sizes}/>
+		<DetailedArticlePage data={data}/>
 	);
 }

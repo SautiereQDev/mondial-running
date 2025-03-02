@@ -27,19 +27,19 @@ export type Color = {
 export type ArticleCategory = "t-shirt" | "sweat" | "pantalon" | "short" | "veste" | "chaussure" | "accessoire";
 
 export interface DetailedArticle {
-	id?: number;
-	name: string;
-	description: string;
-	productDetails?: Partial<ProductDetails>;
-	brand?: string;
-	stock: number;
-	price: number;
-	imagesSrc: string[];
-	colors: Color[];
-	sizes: string[] | number[];
-	avgRating?: number;
-	reviews?: Array<Testimonial & { postedAt: number }>
-	reduction?: Reduction;
-	sex?: "M" | "F" | "U";
-	category?: ArticleCategory;
+	id?: number,
+	name: string,
+	description: string,
+	productDetails?: Partial<ProductDetails>,
+	brand?: string,
+	stock: number,
+	price: number,
+	imagesSrc: string[],
+	colors: Color[],
+	sizes: string[] | number[],
+	avgRating?: number,
+	reviews?: Array<Testimonial & { postedAt: number }>,
+	reduction?: Reduction,
+	sex?: "M" | "F" | "U",
+	category?: ArticleCategory,
 }

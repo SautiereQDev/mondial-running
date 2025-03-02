@@ -12,7 +12,7 @@ export default function NumericalInput({value, setValueFn, stock}: Readonly<Nume
 			<button
 				type="button"
 				disabled={value <= 1}
-				onClick={() => setValueFn}
+				onClick={() => setValueFn(value - 1)}
 				className="px-3 py-2 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
 				aria-label="Diminuer la quantité"
 			>
@@ -37,7 +37,7 @@ export default function NumericalInput({value, setValueFn, stock}: Readonly<Nume
 			<button
 				type="button"
 				disabled={value >= stock}
-				onClick={() => setValueFn(value)}
+				onClick={() => setValueFn(value + 1)}
 				className="px-3 py-2 text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
 				aria-label="Augmenter la quantité"
 			>
