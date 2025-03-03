@@ -1,0 +1,1 @@
+- Ajouter le nom de l'article dans le breadcrumb -> si le dernier element de l'url est un nombre, on fait une requette à l'api en recherchant l'id de l'article et on affiche son nom dans le breadcrumb
