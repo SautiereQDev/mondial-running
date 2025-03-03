@@ -1,4 +1,5 @@
 import {Testimonial} from "@/types/testimonials.types";
+import {User} from "@/types/user.types";
 
 type Material = {
 	name: string;
@@ -26,7 +27,9 @@ export type Color = {
 
 export type ArticleCategory = "t-shirt" | "sweat" | "pantalon" | "short" | "veste" | "chaussure" | "accessoire";
 
-export interface DetailedArticle {
+export type ArticleReview = Testimonial & { postedAt: number };
+
+export type DetailedArticle = {
 	id?: number,
 	name: string,
 	description: string,
@@ -38,7 +41,7 @@ export interface DetailedArticle {
 	colors: Color[],
 	sizes: string[] | number[],
 	avgRating?: number,
-	reviews?: Array<Testimonial & { postedAt: number }>,
+	reviews?: ArticleReview[],
 	reduction?: Reduction,
 	sex?: "M" | "F" | "U",
 	category?: ArticleCategory,
