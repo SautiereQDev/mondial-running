@@ -23,7 +23,7 @@ export default function DetailedArticlePage({data}: Readonly<DetailedArticlePage
 	})
 
 	return (
-		<div className="max-w-[85vw] mx-auto flex justify-evenly mb-40">
+		<div className="max-w-[85vw] mx-auto flex justify-evenly">
 			<div className="flex-1">
 				<ArticleGallery imagesSrc={imagesSrc}/>
 			</div>

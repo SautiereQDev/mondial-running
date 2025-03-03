@@ -7,8 +7,9 @@ import {usePathname} from "next/navigation";
 export default function Banner() {
 
 	const pathName: string = usePathname()
-	const [firstVisit, setFirstVisit] = useState(true)
 	const [display, setDisplay] = useState(true)
+
+	const firstVisit: boolean = true;
 
 	return ((pathName === '/' && firstVisit && display) ? (
 			<div className="bg-black text-white text-center flex items-center justify-between py-2 text-sm pr-6">

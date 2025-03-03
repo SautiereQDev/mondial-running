@@ -18,7 +18,7 @@ export default function Page() {
 
 	// Recherche de l'article par ID dans le fichier de test
 	// TODO: remplacer par une requête API
-	const data = typedArticles.find(a => a.id === articleId) || typedArticles[0];
+	const data = typedArticles.find(a => a.id === articleId) ?? typedArticles[0];
 
 	return (
 		<DetailedArticlePage data={data}/>

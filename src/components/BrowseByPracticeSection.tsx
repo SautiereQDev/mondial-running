@@ -2,9 +2,13 @@ import React from "react";
 import Image from "next/image";
 import {BentoGrid, BentoGridItem} from "@/components/ui/bento-grid";
 import Link from "next/link";
-import {Photo} from "react-photo-album";
+import {Photo as PhotoBase} from "react-photo-album";
 
-const photos: Photo[] & { link: string } = [
+interface CustomPhoto extends PhotoBase {
+	link: string;
+}
+
+const photos: CustomPhoto[] = [
 	{
 		title: "Cross-Country",
 		key: "Cross-Country",
@@ -49,7 +53,7 @@ export default function BrowseByPracticeSection() {
 							<Link href={photo.link} className="relative w-full h-full">
 								<Image
 									src={photo.src}
-									alt={photo.title}
+									alt={photo.title ?? ""}
 									fill
 									style={{objectFit: "cover"}}
 								/>
