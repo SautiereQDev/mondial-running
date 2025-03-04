@@ -9,7 +9,7 @@ interface StarsProps {
 }
 
 export default function Stars({rating, maxRating = 5, showEmpty = false, displayHalf = true, size = 24}: Readonly<StarsProps>) {
-	// S'assurer que le rating est un nombre valide
+	// S'assurer que le avgRating est un nombre valide
 	const safeRating = !isNaN(rating) ? Math.max(0, Math.min(rating, maxRating)) : 0;
 
 	// Calculer les étoiles pleines, demi-étoiles et étoiles vides

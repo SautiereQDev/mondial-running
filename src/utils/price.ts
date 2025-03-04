@@ -1,4 +1,4 @@
-import {Reduction} from "@/types/detailedArticles.types";
+import {Reduction} from "@/types/articles.types";
 
 export default function getNewPrice(initialPrice: number, reduction: Reduction): number {
 	if (reduction?.type === "percentage") {

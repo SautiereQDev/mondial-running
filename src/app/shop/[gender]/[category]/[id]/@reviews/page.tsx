@@ -1,6 +1,6 @@
 "use client";
 import ProductTestimonials from '@/components/ProductTestimonials'
-import {ArticleReview} from "@/types/detailedArticles.types";
+import {ArticleReview} from "@/types/articles.types";
 import {PenSquare} from "lucide-react";
 import {SortDropdown} from "@/components/buttons/SortDropdown";
 import {useState} from "react";

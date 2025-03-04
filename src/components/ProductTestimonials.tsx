@@ -1,5 +1,5 @@
 import React from "react";
-import {ArticleReview} from "@/types/detailedArticles.types";
+import {ArticleReview} from "@/types/articles.types";
 import ProductTestimonialCard from "@/components/cards/ProductTestimonialCard";
 
 interface ProductTestimonialsProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -2,7 +2,7 @@ import Image from "next/image";
 import {isTestimonialWithAuthor} from "@/types/testimonials.types";
 import Stars from "@/utils/Stars";
 import React, {useEffect, useRef, useState} from "react";
-import {ArticleReview} from "@/types/detailedArticles.types";
+import {ArticleReview} from "@/types/articles.types";
 import {ChevronDown, ChevronUp} from "lucide-react";
 
 export default function ProductTestimonialCard({

@@ -4,7 +4,6 @@ import testimonials from "@/data/testimonials.json";
 import {CircleChevronLeft, CircleChevronRight} from "lucide-react";
 
 export default function TestimonialsSection() {
-
 	const [startIndex, setStartIndex] = useState(0);
 	const displayCount = 3;
 	const totalTestimonials = testimonials.length;
@@ -32,7 +31,7 @@ export default function TestimonialsSection() {
 					<CircleChevronRight size={28} onClick={nextTestimonial}/>
 				</div>
 			</div>
-			<div className="flex  mx-auto gap-8">
+			<div className="flex mx-auto gap-8">
 				{testimonials.slice(startIndex, startIndex + displayCount).map((testimonial, index) => (
 					<TestimonialCard
 						key={`${testimonial.username}-${index}`}

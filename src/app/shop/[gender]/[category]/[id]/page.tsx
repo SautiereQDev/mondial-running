@@ -1,7 +1,7 @@
 "use client"; // Nécessaire pour utiliser useParams()
 
 import detailedArticles from "@/data/detailedArticles.json";
-import {DetailedArticle} from "@/types/detailedArticles.types";
+import {DetailedArticle} from "@/types/articles.types";
 import {useParams} from "next/navigation";
 import React from "react";
 import DetailedArticlePage from "@/components/DetailedArticlePage";

@@ -1,6 +1,6 @@
 "use client";
 import ArticleGallery from "@/components/ArticleGallery";
-import {Color, DetailedArticle} from "@/types/detailedArticles.types";
+import {Color, DetailedArticle} from "@/types/articles.types";
 import Stars from "@/utils/Stars";
 import PriceReductionLabel from "@/components/ui/PriceReductionLabel";
 import React, {useState} from "react";
@@ -41,7 +41,7 @@ export default function DetailedArticlePage({data}: Readonly<DetailedArticlePage
 						{reduction && (
 							<>
 								<p className="line-through text-gray-500 text-2xl">{getNewPrice(price, reduction)}€</p>
-								{reduction.type && <PriceReductionLabel discount={reduction.value}/>}
+								{reduction.type && <PriceReductionLabel reduction={reduction}/>}
 							</>
 						)}
 					</div>

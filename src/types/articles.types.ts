@@ -1,5 +1,4 @@
 import {Testimonial} from "@/types/testimonials.types";
-import {User} from "@/types/user.types";
 
 type Material = {
 	name: string;
@@ -29,20 +28,24 @@ export type ArticleCategory = "t-shirt" | "sweat" | "pantalon" | "short" | "vest
 
 export type ArticleReview = Testimonial & { postedAt: number };
 
-export type DetailedArticle = {
-	id?: number,
-	name: string,
+export interface Article {
+	id?: number;
+	imagesSrc: string[];
+	name: string;
+	price: number;
+	avgRating?: number;
+	reduction?: Reduction;
+}
+
+export type DetailedArticle = Article & {
 	description: string,
 	productDetails?: Partial<ProductDetails>,
 	brand?: string,
 	stock: number,
-	price: number,
-	imagesSrc: string[],
 	colors: Color[],
 	sizes: string[] | number[],
-	avgRating?: number,
 	reviews?: ArticleReview[],
-	reduction?: Reduction,
 	sex?: "M" | "F" | "U",
 	category?: ArticleCategory,
 }
+

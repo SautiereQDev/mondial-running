@@ -1,4 +1,4 @@
-import {Reduction} from '@/types/detailedArticles.types'
+import {Reduction} from '@/types/articles.types'
 import React from "react";
 
 interface PriceReductionLabelProps extends React.HTMLProps<HTMLParagraphElement> {

@@ -1,6 +1,6 @@
 import {articles} from '@/data/articles';
 import ArticleCard from "@/components/cards/ArticleCard";
-import {Article} from "@/types/articleSection.types";
+import {Article} from "@/types/articles.types";
 
 export default function YouMightAlsoLikeSection() {
 	// TODO : A remplacer par un appel API

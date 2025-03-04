@@ -1,9 +1,8 @@
 import React from 'react';
 import Stars from "@/utils/Stars";
 import {BadgeCheck} from "lucide-react";
-import {Testimonial} from "@/types/testimonials.types";
 
-export default function TestimonialCard({rating, username, verified, content}: Readonly<Testimonial>) {
+export default function TestimonialCard({rating, username, verified, content}: Readonly<{rating: number, username: string, verified: boolean, content: string}>) {
 	return (
 		<div className="flex flex-col border rounded-lg py-7 px-8 gap-4">
 			<Stars rating={rating}/>
