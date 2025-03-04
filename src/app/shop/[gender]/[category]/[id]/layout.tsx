@@ -10,23 +10,23 @@ export default function Layout({children, details, faq, reviews}: Readonly<{
 
 	const [activeSection, setActiveSection] = useState<'details' | 'faq' | "reviews">("reviews");
 
-	return <>
+	return <div className="max-w-[85vw] mx-auto mb-80">
 		{children}
 		<div className="flex justify-evenly mt-20">
 			<button onClick={() => setActiveSection("details")}
-							className={`text-lg font-bold ${activeSection === "details" ? "text-primary" : "text-gray-600"}`}>Details
-			</button>
-			<button onClick={() => setActiveSection("faq")}
-							className={`text-lg font-bold ${activeSection === "faq" ? "text-primary" : "text-gray-600"}`}>FAQ
+							className={`text-lg font-bold border-b-3 w-1/3 pb-2 ${activeSection === "details" && "text-primary border-black "}`}>Details du produits
 			</button>
 			<button onClick={() => setActiveSection("reviews")}
-							className={`text-lg font-bold ${activeSection === "reviews" ? "text-primary" : "text-gray-600"}`}>Reviews
+							className={`text-lg font-bold border-b-3 w-1/3 pb-2 ${activeSection === "reviews" && "text-primary border-black"}`}>Avis et commentaires
+			</button>
+			<button onClick={() => setActiveSection("faq")}
+							className={`text-lg font-bold border-b-3 w-1/3 pb-2 ${activeSection === "faq" && "text-primary border-black"}`}>FAQ
 			</button>
 		</div>
-		<div className="max-w-[85vw] mx-auto flex justify-evenly mb-80">
+		<div className="flex justify-evenly">
 			{activeSection === "details" && details}
-			{activeSection === "faq" && faq}
 			{activeSection === "reviews" && reviews}
+			{activeSection === "faq" && faq}
 		</div>
-	</>
+	</div>
 }

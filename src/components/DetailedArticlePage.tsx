@@ -5,7 +5,7 @@ import Stars from "@/utils/Stars";
 import PriceReductionLabel from "@/components/ui/PriceReductionLabel";
 import React, {useState} from "react";
 import getNewPrice from "@/utils/price";
-import {Check} from "lucide-react";
+import {Check, ShoppingCart} from "lucide-react";
 import NumericalInput from "@/components/ui/NumericalInput";
 
 interface DetailedArticlePageProps {
@@ -91,12 +91,13 @@ export default function DetailedArticlePage({data}: Readonly<DetailedArticlePage
 
 				{/* Bouton Ajouter au panier */}
 				<button
-					className="mt-6 w-full py-3 bg-black text-white font-medium rounded-md hover:bg-gray-800 transition-colors"
+					className="mt-6 w-3/4 m-auto py-3.5 shadow-md bg-gradient-to-r from-gray-900 to-black text-white font-semibold rounded-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-3 border border-transparent hover:border-gray-700"
 					onClick={() => {
 						// Logique pour ajouter au panier
 						console.log("Article ajouté au panier", userChoice);
 					}}
 				>
+					<ShoppingCart/>
 					Ajouter au panier
 				</button>
 			</aside>
