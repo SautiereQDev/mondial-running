@@ -1,13 +1,13 @@
 "use client";
 import ProductTestimonials from '@/components/ProductTestimonials'
-import {ArticleReview} from "@/types/articles.types";
-import {PenSquare} from "lucide-react";
-import {SortDropdown} from "@/components/buttons/SortDropdown";
-import {useState} from "react";
-import {SortType} from '@/types/testimonials.types';
+import { ArticleReview } from "@/types/articles.types";
+import { PenSquare } from "lucide-react";
+import { SortDropdown } from "@/components/buttons/SortDropdown";
+import { useState } from "react";
+import { SortType } from '@/types/testimonials.types';
 import TestimonialsSettingsButton from "@/components/buttons/TestimonialsSettingsButton";
 import Link from "next/link";
-import {usePathname} from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 const reviews: ArticleReview[] = [
 	{
@@ -55,7 +55,7 @@ export default function Page() {
 	const pathname = usePathname();
 
 	return (
-		<div className="flex flex-col w-full gap-8 mb-16">
+		<div className="flex flex-col w-full gap-8">
 			<div className="flex items-center gap-3 pt-10 justify-between">
 				<div className="flex items-center gap-3">
 					<h4 className="text-2xl font-bold">Tous les commentaires <span
@@ -64,15 +64,15 @@ export default function Page() {
 				<Link
 					href={`${pathname}/new-testimonial`}
 					className="text-md bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-3 shadow-md transition-all duration-200 flex items-center gap-3 rounded-lg cursor-pointer">
-					<PenSquare className="h-4 w-4"/>
+					<PenSquare className="h-4 w-4" />
 					Écrire un commentaire
 				</Link>
 			</div>
 			<div className="flex items-center gap-4 justify-end mb-4">
-				<TestimonialsSettingsButton/>
-				<SortDropdown sortType={sortType} setSortType={setSortType}/>
+				<TestimonialsSettingsButton />
+				<SortDropdown sortType={sortType} setSortType={setSortType} />
 			</div>
-			<ProductTestimonials reviews={reviews}/>
+			<ProductTestimonials reviews={reviews} />
 			<button className="px-7 py-2.5 border m-auto rounded-2xl shadow cursor-pointer mt-4">Afficher plus</button>
 		</div>
 	)

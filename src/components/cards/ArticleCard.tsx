@@ -13,7 +13,7 @@ export default function ArticleCard({article} : Readonly<{article: Article}>) {
 	return (
 		<div className="cursor-pointer hover:border-gray-300 hover:shadow-md border border-gray-200 p-4 rounded-xl">
 			<Link href={`/article/${id}`}>
-				<Image src={imagesSrc} alt={`Illustration de ${name}`} width={295} height={295}
+				<Image src={imagesSrc[0]} alt={`Illustration de ${name}`} width={295} height={295}
 							 className="rounded-xl max-h-[295]"/>
 				<h3 className='font-bold text-xl pt-3 pb-2 font-[montserrat]'>{name}</h3>
 				<div className="flex gap-1 flex-col">

@@ -44,6 +44,26 @@
       "value": 10,
       "startDate": "2022-01-01",
       "endDate": "2022-12-31"
+    },
+    "productDetails": {
+      "composition": [
+        {
+          "name": "Polyester",
+          "percentage": 90
+        },
+        {
+          "name": "Coton",
+          "percentage": 10
+        }
+      ],
+      "origine": "France",
+      "entretien": "Ne pas la laver avec de l'huile",
+      "maximumWashTemp": 40,
+      "keyPoints": [
+        "Confortable grace à sa texture de coton",
+        "Durable et résistante",
+        "Eco-friendly et durable"
+      ]
     }
   }
 ]

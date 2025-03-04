@@ -1,4 +1,4 @@
-import {Testimonial} from "@/types/testimonials.types";
+import { Testimonial } from "@/types/testimonials.types";
 
 type Material = {
 	name: string;
@@ -10,6 +10,7 @@ export type ProductDetails = {
 	origine: string;
 	entretien: string;
 	maximumWashTemp: number;
+	keyPoints: string[];
 }
 
 export type Reduction = {
