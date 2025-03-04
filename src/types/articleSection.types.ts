@@ -1,14 +1,15 @@
-export interface ArticleProps {
+import {Reduction} from "@/types/detailedArticles.types";
+
+export interface Article {
 	id?: number;
 	imgSrc: string;
 	title: string;
 	price: number;
 	rating?: number;
-	reduction?: number;
-	oldPrice?: number;
+	reduction?: Reduction;
 }
 
 export interface ArticleSectionProps {
 	title: string;
-	articles: ArticleProps[];
+	articles: Article[];
 }

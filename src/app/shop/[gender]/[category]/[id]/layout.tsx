@@ -1,5 +1,6 @@
 "use client";
 import {ReactNode, useState} from "react";
+import YouMightAlsoLikeSection from "@/components/sections/YouMightAlsoLikeSection";
 
 export default function Layout({children, details, faq, reviews}: Readonly<{
 	children: ReactNode,
@@ -10,7 +11,7 @@ export default function Layout({children, details, faq, reviews}: Readonly<{
 
 	const [activeSection, setActiveSection] = useState<'details' | 'faq' | "reviews">("reviews");
 
-	return <div className="max-w-[85vw] mx-auto mb-80">
+	return <div className="max-w-[85vw] mx-auto mb-20">
 		{children}
 		<div className="flex justify-evenly mt-20">
 			<button onClick={() => setActiveSection("details")}
@@ -28,5 +29,6 @@ export default function Layout({children, details, faq, reviews}: Readonly<{
 			{activeSection === "reviews" && reviews}
 			{activeSection === "faq" && faq}
 		</div>
+		<YouMightAlsoLikeSection/>
 	</div>
 }
