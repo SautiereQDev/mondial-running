@@ -9,7 +9,7 @@ export default function Page() {
 		<div className="w-full mt-10">
 			{/* Composition Section */}
 			<div className="mb-8">
-				<h3 className="text-xl font-bold mb-4">Composition</h3>
+				<h3 className="text-2xl font-bold mb-4">Composition</h3>
 				<div className="bg-gray-50 p-5 rounded-lg">
 					<div className="flex flex-wrap gap-3">
 						{article.composition.map((item, index) => (
