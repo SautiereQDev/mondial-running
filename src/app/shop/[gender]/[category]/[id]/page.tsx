@@ -1,13 +1,13 @@
 "use client"; // Nécessaire pour utiliser useParams()
 
 import detailedArticles from "@/data/detailedArticles.json";
-import {DetailedArticle} from "@/types/articles.types";
-import {useParams} from "next/navigation";
+import { DetailedArticle } from "@/types/articles.types";
+import { useParams } from "next/navigation";
 import React from "react";
 import DetailedArticlePage from "@/components/DetailedArticlePage";
 
 export default function Page() {
-	const {id} = useParams();
+	const { id } = useParams();
 	const articleId = typeof id === "string" ? parseInt(id) : 0;
 
 	const typedArticles = detailedArticles.map(article => ({
@@ -21,6 +21,6 @@ export default function Page() {
 	const data = typedArticles.find(a => a.id === articleId) ?? typedArticles[0];
 
 	return (
-		<DetailedArticlePage data={data}/>
+		<DetailedArticlePage data={data} />
 	);
 }

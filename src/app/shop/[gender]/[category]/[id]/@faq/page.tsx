@@ -1,69 +1,139 @@
-import React from 'react';
-import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
-} from "@/components/ui/accordion";
+"use client";
+import ProductTestimonials from '@/components/ProductTestimonials'
+import { ArticleReview } from "@/types/articles.types";
+import { MessageSquare, PenSquare, Star } from "lucide-react";
+import { SortDropdown } from "@/components/buttons/SortDropdown";
+import { useState } from "react";
+import { SortType } from '@/types/testimonials.types';
+import TestimonialsSettingsButton from "@/components/buttons/TestimonialsSettingsButton";
+import Link from "next/link";
+import { usePathname } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import Stars from '@/utils/Stars';
 
-const faqItems = [
+const reviews: ArticleReview[] = [
 	{
-		question: "Comment choisir la bonne taille ?",
-		answer: "Pour choisir la bonne taille, consultez notre guide des tailles dans la section détails du produit. Nous vous recommandons de prendre vos mesures et de les comparer à notre tableau. Si vous êtes entre deux tailles, optez pour la taille supérieure pour plus de confort."
-	},
-	{
-		question: "Quels sont les délais de livraison ?",
-		answer: "Les délais de livraison varient selon votre localisation. En général, les commandes sont expédiées sous 24-48h et livrées en 3-5 jours ouvrables en France métropolitaine. Pour les livraisons internationales, comptez 5-10 jours ouvrables."
-	},
-	{
-		question: "Comment entretenir ce produit ?",
-		answer: "Pour préserver la qualité de ce produit, suivez les instructions d'entretien indiquées sur l'étiquette. En général, nous recommandons un lavage à basse température, pas de sèche-linge, et un repassage à température modérée si nécessaire."
-	},
-	{
-		question: "Puis-je retourner ou échanger ce produit ?",
-		answer: "Oui, vous disposez de 30 jours à compter de la réception pour retourner ou échanger votre produit. Le produit doit être dans son état d'origine, non porté et avec toutes les étiquettes. Les frais de retour sont à votre charge sauf en cas de produit défectueux."
-	},
-	{
-		question: "Ce produit est-il adapté pour la course sur route ?",
-		answer: "Ce produit est spécialement conçu pour la course sur route avec un amorti optimal et une excellente adhérence sur surfaces dures. Il offre un bon équilibre entre confort et performance pour les coureurs réguliers."
-	},
-	{
-		question: "Quels sont les avantages de ce matériau ?",
-		answer: "Les matériaux utilisés dans ce produit offrent une excellente respirabilité, une grande durabilité et un confort optimal. Ils sont également choisis pour leur légèreté et leur capacité à évacuer l'humidité, ce qui est idéal pour les activités sportives."
+		id: 0,
+		rating: 4,
+		userId: 1,
+		verified: true,
+		content: "Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !",
+		createdAt: Date.now() - 86400000, // 1 jour avant
+		updatedAt: undefined,
+		postedAt: Date.now() - 86400000
+	}, {
+		id: 1,
+		rating: 4,
+		userId: 1,
+		verified: true,
+		content: "Très bon produit, je recommande !",
+		createdAt: Date.now() - 86400000, // 1 jour avant
+		updatedAt: undefined,
+		postedAt: Date.now() - 86400000
+	}, {
+		id: 2,
+		rating: 4,
+		userId: 1,
+		verified: true,
+		content: "Très bon produit, je recommande !",
+		createdAt: Date.now() - 86400000, // 1 jour avant
+		updatedAt: undefined,
+		postedAt: Date.now() - 86400000
+	}, {
+		id: 3,
+		rating: 4,
+		userId: 1,
+		verified: true,
+		content: "Très bon produit, je recommande !",
+		createdAt: Date.now() - 86400000, // 1 jour avant
+		updatedAt: undefined,
+		postedAt: Date.now() - 86400000
 	}
 ];
 
+// Calculer la note moyenne
+const calculateAverageRating = (reviews: ArticleReview[]): number => {
+	if (reviews.length === 0) return 0;
+	const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
+	return parseFloat((sum / reviews.length).toFixed(1));
+};
+
 export default function Page() {
+	const [sortType, setSortType] = useState<SortType>("latest");
+	const pathname = usePathname();
+	const averageRating = calculateAverageRating(reviews);
+
 	return (
-		<div className="w-full py-8">
-			<h2 className="text-2xl font-bold mb-6">Questions fréquemment posées</h2>
+		<div className="flex flex-col w-full gap-8">
+			{/* En-tête avec statistiques */}
+			<div className="bg-gray-50 rounded-xl p-6 mt-10 shadow-sm">
+				<div className="flex items-start justify-between">
+					<div className="space-y-2">
+						<h4 className="text-2xl font-bold">Avis clients</h4>
+						<div className="flex items-center gap-2">
+							<div className="flex items-center">
+								<Stars rating={averageRating} size={20} />
+								<span className="ml-2 font-medium text-lg">{averageRating}</span>
+							</div>
+							<span className="text-gray-500">•</span>
+							<span className="text-gray-600 flex items-center gap-1">
+								<MessageSquare className="h-4 w-4" />
+								{reviews.length} avis
+							</span>
+						</div>
+					</div>
+					<Link href={`${pathname}/new-testimonial`}>
+						<Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md transition-all duration-200 flex items-center gap-2">
+							<PenSquare className="h-4 w-4" />
+							Écrire un avis
+						</Button>
+					</Link>
+				</div>
 
-			<Accordion type="single" collapsible className="space-y-4">
-				{faqItems.map((item, index) => (
-					<AccordionItem
-						key={index}
-						value={`item-${index}`}
-						className="border border-gray-200 rounded-lg px-1 overflow-hidden hover:shadow-xs"
-					>
-						<AccordionTrigger className="py-4 px-3 hover:no-underline cursor-pointer">
-							<h3 className="text-lg font-medium text-left">{item.question}</h3>
-						</AccordionTrigger>
-						<AccordionContent className="px-3 pb-4 pt-1 text-gray-700">
-							{item.answer}
-						</AccordionContent>
-					</AccordionItem>
-				))}
-			</Accordion>
+				{/* Distribution des notes */}
+				<div className="mt-6 grid grid-cols-5 gap-4">
+					{[5, 4, 3, 2, 1].map((rating) => {
+						const count = reviews.filter(r => r.rating === rating).length;
+						const percentage = reviews.length > 0 ? Math.round((count / reviews.length) * 100) : 0;
 
-			<div className="mt-10 p-5 bg-blue-50 rounded-lg border border-blue-100">
-				<h3 className="text-lg font-medium text-blue-800 mb-2">Vous avez d'autres questions ?</h3>
-				<p className="text-gray-700">
-					Notre équipe de support client est disponible pour vous aider.
-					<a href="/contact" className="text-blue-600 font-medium ml-1 hover:underline">
-						Contactez-nous
-					</a>
-				</p>
+						return (
+							<div key={rating} className="flex items-center gap-2">
+								<div className="flex items-center gap-1 w-12">
+									<span className="text-sm font-medium">{rating}</span>
+									<Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
+								</div>
+								<div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+									<div
+										className="h-full bg-yellow-400 rounded-full"
+										style={{ width: `${percentage}%` }}
+									/>
+								</div>
+								<span className="text-xs text-gray-500 w-8">{percentage}%</span>
+							</div>
+						);
+					})}
+				</div>
 			</div>
+
+			<Separator className="my-2" />
+
+			{/* Filtres et tri */}
+			<div className="flex items-center gap-4 justify-end">
+				<TestimonialsSettingsButton />
+				<SortDropdown sortType={sortType} setSortType={setSortType} />
+			</div>
+
+			{/* Liste des avis */}
+			<ProductTestimonials reviews={reviews} />
+
+			{/* Bouton "Afficher plus" */}
+			<Button
+				variant="outline"
+				className="mx-auto mt-6 px-8 rounded-full border-gray-300 hover:bg-gray-50"
+			>
+				Afficher plus d'avis
+			</Button>
 		</div>
-	);
+	)
 }

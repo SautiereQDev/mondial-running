@@ -17,4 +17,5 @@ export type User = {
 	lastName?: string;
 	phoneNumber?: string;
 	billPreference?: BillPreference;
+	likedArticles: number; // article id
 }
