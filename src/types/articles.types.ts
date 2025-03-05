@@ -46,7 +46,7 @@ export type DetailedArticle = Article & {
 	colors: Color[],
 	sizes: string[] | number[],
 	reviews?: ArticleReview[],
-	sex?: "M" | "F" | "U",
+	gender?: "M" | "F" | "U",
 	category?: ArticleCategory,
 }
 
