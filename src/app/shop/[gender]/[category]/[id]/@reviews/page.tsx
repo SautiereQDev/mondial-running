@@ -1,139 +1,98 @@
 "use client";
-import ProductTestimonials from '@/components/ProductTestimonials'
-import { ArticleReview } from "@/types/articles.types";
-import { MessageSquare, PenSquare, Star } from "lucide-react";
-import { SortDropdown } from "@/components/buttons/SortDropdown";
-import { useState } from "react";
-import { SortType } from '@/types/testimonials.types';
-import TestimonialsSettingsButton from "@/components/buttons/TestimonialsSettingsButton";
-import Link from "next/link";
-import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import Stars from '@/utils/Stars';
-
-const reviews: ArticleReview[] = [
-	{
-		id: 0,
-		rating: 4,
-		userId: 1,
-		verified: true,
-		content: "Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !",
-		createdAt: Date.now() - 86400000, // 1 jour avant
-		updatedAt: undefined,
-		postedAt: Date.now() - 86400000
-	}, {
-		id: 1,
-		rating: 4,
-		userId: 1,
-		verified: true,
-		content: "Très bon produit, je recommande !",
-		createdAt: Date.now() - 86400000, // 1 jour avant
-		updatedAt: undefined,
-		postedAt: Date.now() - 86400000
-	}, {
-		id: 2,
-		rating: 4,
-		userId: 1,
-		verified: true,
-		content: "Très bon produit, je recommande !",
-		createdAt: Date.now() - 86400000, // 1 jour avant
-		updatedAt: undefined,
-		postedAt: Date.now() - 86400000
-	}, {
-		id: 3,
-		rating: 4,
-		userId: 1,
-		verified: true,
-		content: "Très bon produit, je recommande !",
-		createdAt: Date.now() - 86400000, // 1 jour avant
-		updatedAt: undefined,
-		postedAt: Date.now() - 86400000
-	}
-];
-
-// Calculer la note moyenne
-const calculateAverageRating = (reviews: ArticleReview[]): number => {
-	if (reviews.length === 0) return 0;
-	const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
-	return parseFloat((sum / reviews.length).toFixed(1));
-};
+import { useProductStore } from "@/stores/productStore";
+import { Star } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 export default function Page() {
-	const [sortType, setSortType] = useState<SortType>("latest");
-	const pathname = usePathname();
-	const averageRating = calculateAverageRating(reviews);
+  const { product, reviews } = useProductStore();
 
-	return (
-		<div className="flex flex-col w-full gap-8">
-			{/* En-tête avec statistiques */}
-			<div className="bg-gray-50 rounded-xl p-6 mt-10 shadow-sm">
-				<div className="flex items-start justify-between">
-					<div className="space-y-2">
-						<h4 className="text-2xl font-bold">Avis clients</h4>
-						<div className="flex items-center gap-2">
-							<div className="flex items-center">
-								<Stars rating={averageRating} size={20} />
-								<span className="ml-2 font-medium text-lg">{averageRating}</span>
-							</div>
-							<span className="text-gray-500">•</span>
-							<span className="text-gray-600 flex items-center gap-1">
-								<MessageSquare className="h-4 w-4" />
-								{reviews.length} avis
-							</span>
-						</div>
-					</div>
-					<Link href={`${pathname}/new-testimonial`}>
-						<Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md transition-all duration-200 flex items-center gap-2">
-							<PenSquare className="h-4 w-4" />
-							Écrire un avis
-						</Button>
-					</Link>
-				</div>
+  if (!product) return null;
 
-				{/* Distribution des notes */}
-				<div className="mt-6 grid grid-cols-5 gap-4">
-					{[5, 4, 3, 2, 1].map((rating) => {
-						const count = reviews.filter(r => r.rating === rating).length;
-						const percentage = reviews.length > 0 ? Math.round((count / reviews.length) * 100) : 0;
+  const { averageRating, reviewCount } = product;
 
-						return (
-							<div key={rating} className="flex items-center gap-2">
-								<div className="flex items-center gap-1 w-12">
-									<span className="text-sm font-medium">{rating}</span>
-									<Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
-								</div>
-								<div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-									<div
-										className="h-full bg-yellow-400 rounded-full"
-										style={{ width: `${percentage}%` }}
-									/>
-								</div>
-								<span className="text-xs text-gray-500 w-8">{percentage}%</span>
-							</div>
-						);
-					})}
-				</div>
-			</div>
+  const ratingCounts = {
+    5: 45,
+    4: 30,
+    3: 15,
+    2: 7,
+    1: 3,
+  };
 
-			<Separator className="my-2" />
+  return (
+    <div className="py-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Rating Summary */}
+        <div className="md:col-span-1">
+          <div className="bg-white p-6 rounded-lg shadow-sm border">
+            <h3 className="text-xl font-bold mb-4">Note moyenne</h3>
+            <div className="flex items-baseline gap-2 mb-4">
+              <span className="text-4xl font-bold">{averageRating}</span>
+              <div className="flex items-center">
+                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                <span className="text-sm text-gray-500">
+                  ({reviewCount} avis)
+                </span>
+              </div>
+            </div>
 
-			{/* Filtres et tri */}
-			<div className="flex items-center gap-4 justify-end">
-				<TestimonialsSettingsButton />
-				<SortDropdown sortType={sortType} setSortType={setSortType} />
-			</div>
+            <div className="space-y-3">
+              {Object.entries(ratingCounts)
+                .reverse()
+                .map(([rating, count]) => (
+                  <div key={rating} className="flex items-center gap-2">
+                    <span className="w-12 text-sm">{rating} étoiles</span>
+                    <Progress
+                      value={(count / (reviewCount ?? 1)) * 100}
+                      className="flex-1"
+                    />
+                    <span className="w-12 text-sm text-right">{count}</span>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
 
-			{/* Liste des avis */}
-			<ProductTestimonials reviews={reviews} />
-
-			{/* Bouton "Afficher plus" */}
-			<Button
-				variant="outline"
-				className="mx-auto mt-6 px-8 rounded-full border-gray-300 hover:bg-gray-50"
-			>
-				Afficher plus d'avis
-			</Button>
-		</div>
-	)
+        {/* Reviews List */}
+        <div className="md:col-span-2">
+          <div className="space-y-6">
+            {reviews?.map((review, index) => (
+              <div
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-sm border"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h4 className="font-semibold">{review.author}</h4>
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`h-4 w-4 ${
+                              i < review.rating
+                                ? "fill-yellow-400 text-yellow-400"
+                                : "fill-gray-200 text-gray-200"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-500">
+                        {review.date}
+                      </span>
+                    </div>
+                  </div>
+                  {review.verified && (
+                    <span className="text-sm text-green-600 bg-green-50 px-2 py-1 rounded">
+                      Achat vérifié
+                    </span>
+                  )}
+                </div>
+                <p className="text-gray-600">{review.comment}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

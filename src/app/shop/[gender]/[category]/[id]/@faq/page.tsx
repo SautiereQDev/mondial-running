@@ -1,139 +1,108 @@
 "use client";
-import ProductTestimonials from '@/components/ProductTestimonials'
-import { ArticleReview } from "@/types/articles.types";
-import { MessageSquare, PenSquare, Star } from "lucide-react";
-import { SortDropdown } from "@/components/buttons/SortDropdown";
-import { useState } from "react";
-import { SortType } from '@/types/testimonials.types';
-import TestimonialsSettingsButton from "@/components/buttons/TestimonialsSettingsButton";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { HelpCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import Stars from '@/utils/Stars';
-
-const reviews: ArticleReview[] = [
-	{
-		id: 0,
-		rating: 4,
-		userId: 1,
-		verified: true,
-		content: "Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !Très bon produit, je recommande !",
-		createdAt: Date.now() - 86400000, // 1 jour avant
-		updatedAt: undefined,
-		postedAt: Date.now() - 86400000
-	}, {
-		id: 1,
-		rating: 4,
-		userId: 1,
-		verified: true,
-		content: "Très bon produit, je recommande !",
-		createdAt: Date.now() - 86400000, // 1 jour avant
-		updatedAt: undefined,
-		postedAt: Date.now() - 86400000
-	}, {
-		id: 2,
-		rating: 4,
-		userId: 1,
-		verified: true,
-		content: "Très bon produit, je recommande !",
-		createdAt: Date.now() - 86400000, // 1 jour avant
-		updatedAt: undefined,
-		postedAt: Date.now() - 86400000
-	}, {
-		id: 3,
-		rating: 4,
-		userId: 1,
-		verified: true,
-		content: "Très bon produit, je recommande !",
-		createdAt: Date.now() - 86400000, // 1 jour avant
-		updatedAt: undefined,
-		postedAt: Date.now() - 86400000
-	}
-];
-
-// Calculer la note moyenne
-const calculateAverageRating = (reviews: ArticleReview[]): number => {
-	if (reviews.length === 0) return 0;
-	const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
-	return parseFloat((sum / reviews.length).toFixed(1));
-};
 
 export default function Page() {
-	const [sortType, setSortType] = useState<SortType>("latest");
-	const pathname = usePathname();
-	const averageRating = calculateAverageRating(reviews);
+  const faqs = [
+    {
+      question: "Comment choisir la bonne taille ?",
+      answer:
+        "Nous recommandons de prendre une taille au-dessus de votre pointure habituelle pour les chaussures de running. Cela permet d'avoir suffisamment d'espace pour les orteils et tenir compte du gonflement du pied pendant la course.",
+    },
+    {
+      question: "Quelle est la politique de retour ?",
+      answer:
+        "Vous disposez de 30 jours pour retourner gratuitement votre produit. La chaussure doit être dans son état d'origine et non portée en extérieur.",
+    },
+    {
+      question: "Ces chaussures conviennent-elles pour le marathon ?",
+      answer:
+        "Cela dépend du modèle. Certaines de nos chaussures sont spécialement conçues pour les longues distances, tandis que d'autres sont plus adaptées pour les courtes et moyennes distances.",
+    },
+    {
+      question: "Comment entretenir mes chaussures de running ?",
+      answer:
+        "Nettoyez-les régulièrement avec une brosse douce et de l'eau tiède. Évitez le sèche-linge et le contact direct avec des sources de chaleur. Laissez-les sécher naturellement à température ambiante.",
+    },
+    {
+      question: "Quelle est la durée de vie moyenne ?",
+      answer:
+        "La durée de vie moyenne d'une chaussure de running est de 800 à 1000 km. Cependant, cela peut varier en fonction de votre style de course, votre poids et le terrain sur lequel vous courez.",
+    },
+  ];
 
-	return (
-		<div className="flex flex-col w-full gap-8">
-			{/* En-tête avec statistiques */}
-			<div className="bg-gray-50 rounded-xl p-6 mt-10 shadow-sm">
-				<div className="flex items-start justify-between">
-					<div className="space-y-2">
-						<h4 className="text-2xl font-bold">Avis clients</h4>
-						<div className="flex items-center gap-2">
-							<div className="flex items-center">
-								<Stars rating={averageRating} size={20} />
-								<span className="ml-2 font-medium text-lg">{averageRating}</span>
-							</div>
-							<span className="text-gray-500">•</span>
-							<span className="text-gray-600 flex items-center gap-1">
-								<MessageSquare className="h-4 w-4" />
-								{reviews.length} avis
-							</span>
-						</div>
-					</div>
-					<Link href={`${pathname}/new-testimonial`}>
-						<Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md transition-all duration-200 flex items-center gap-2">
-							<PenSquare className="h-4 w-4" />
-							Écrire un avis
-						</Button>
-					</Link>
-				</div>
+  return (
+    <div className="py-12 w-full bg-gradient-to-b from-white to-gray-50">
+      <motion.div
+        className="max-w-3xl mx-auto px-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="flex items-center gap-3 mb-8">
+          <HelpCircle className="h-8 w-8 text-primary" />
+          <h2 className="text-3xl font-bold text-gray-800">
+            Questions fréquentes
+          </h2>
+        </div>
 
-				{/* Distribution des notes */}
-				<div className="mt-6 grid grid-cols-5 gap-4">
-					{[5, 4, 3, 2, 1].map((rating) => {
-						const count = reviews.filter(r => r.rating === rating).length;
-						const percentage = reviews.length > 0 ? Math.round((count / reviews.length) * 100) : 0;
+        <p className="text-gray-600 mb-8">
+          Retrouvez ci-dessous les réponses aux questions les plus fréquemment
+          posées sur nos produits. Si vous ne trouvez pas la réponse à votre
+          question, n&apos;hésitez pas à contacter notre service client.
+        </p>
 
-						return (
-							<div key={rating} className="flex items-center gap-2">
-								<div className="flex items-center gap-1 w-12">
-									<span className="text-sm font-medium">{rating}</span>
-									<Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
-								</div>
-								<div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-									<div
-										className="h-full bg-yellow-400 rounded-full"
-										style={{ width: `${percentage}%` }}
-									/>
-								</div>
-								<span className="text-xs text-gray-500 w-8">{percentage}%</span>
-							</div>
-						);
-					})}
-				</div>
-			</div>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          <Accordion
+            type="single"
+            collapsible
+            className="divide-y divide-gray-100"
+          >
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <AccordionItem value={`item-${index}`} className="border-none">
+                  <AccordionTrigger className="text-left py-5 px-6 hover:bg-gray-50 text-gray-800 font-medium text-lg">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 px-6 pb-5 pt-0 text-base leading-relaxed">
+                    <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-primary">
+                      {faq.answer}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
+        </div>
 
-			<Separator className="my-2" />
-
-			{/* Filtres et tri */}
-			<div className="flex items-center gap-4 justify-end">
-				<TestimonialsSettingsButton />
-				<SortDropdown sortType={sortType} setSortType={setSortType} />
-			</div>
-
-			{/* Liste des avis */}
-			<ProductTestimonials reviews={reviews} />
-
-			{/* Bouton "Afficher plus" */}
-			<Button
-				variant="outline"
-				className="mx-auto mt-6 px-8 rounded-full border-gray-300 hover:bg-gray-50"
-			>
-				Afficher plus d'avis
-			</Button>
-		</div>
-	)
+        <div className="mt-10 bg-blue-50 p-6 rounded-xl border border-blue-100">
+          <h3 className="font-semibold text-blue-800 mb-2">
+            Vous avez d&apos;autres questions ?
+          </h3>
+          <p className="text-blue-700 mb-5">
+            Notre équipe est disponible pour vous aider et répondre à toutes vos
+            questions.
+          </p>
+          <Link
+            href="/contact"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium"
+          >
+            Contacter le support
+          </Link>
+        </div>
+      </motion.div>
+    </div>
+  );
 }

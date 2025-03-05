@@ -1,57 +1,104 @@
-import detailedArticles from '@/data/detailedArticles.json'
-import { DetailedArticle, ProductDetails } from '@/types/articles.types';
-import { WashingMachine, MapPin, CheckCircle } from 'lucide-react';
+"use client";
+import { Check } from "lucide-react";
+import { useProductStore } from "@/stores/productStore";
 
 export default function Page() {
-	const article: ProductDetails = detailedArticles[0].productDetails;
+  const { product } = useProductStore();
 
-	return (
-		<div className="w-full mt-10">
-			{/* Composition Section */}
-			<div className="mb-8">
-				<h3 className="text-2xl font-bold mb-4">Composition</h3>
-				<div className="bg-gray-50 p-5 rounded-lg">
-					<div className="flex flex-wrap gap-3">
-						{article.composition.map((item, index) => (
-							<div key={index} className="flex items-center gap-2">
-								<span className="font-medium">{item.name}:</span>
-								<span className="text-gray-600">{item.percentage}%</span>
-								{index < article.composition.length - 1 && <span className="text-gray-300">|</span>}
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
+  if (!product) return null;
 
-			{/* Origin & Care Section */}
-			<div className="grid grid-cols-2 gap-8 mb-8">
-				<div className="bg-gray-50 p-6 rounded-lg">
-					<h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-						<MapPin className="h-5 w-5" />
-						Origine: <span className="font-normal text-gray-700 ml-2">{article.origine}</span>
-					</h3>
-				</div>
-				<div className="bg-gray-50 p-6 rounded-lg">
-					<h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-						<WashingMachine className="h-5 w-5" />
-						Instructions d'entretien
-					</h3>
-					<p className="text-gray-700 mb-2">{article.entretien}</p>
-					<p className="text-sm text-gray-500">Température maximale de lavage: {article.maximumWashTemp}°C</p>
-				</div>
-			</div>
+  const { features, recommendedFor, description } = product;
 
-			<div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
-				<h3 className="text-xl font-bold mb-4 text-blue-800">Points clés</h3>
-				<div className="space-y-3">
-					{article.keyPoints.map((point, index) => (
-						<div key={index} className="flex items-start gap-3">
-							<CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
-							<p className="text-gray-700">{point}</p>
-						</div>
-					))}
-				</div>
-			</div>
-		</div>
-	)
+  return (
+    <div className="py-8">
+      <div className="prose max-w-none">
+        <h2 className="text-2xl font-bold mb-6">Description détaillée</h2>
+        <p className="text-gray-600 mb-8">{description}</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Technical Features */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border">
+          <h3 className="text-xl font-semibold mb-4">
+            Caractéristiques techniques
+          </h3>
+          <ul className="space-y-3">
+            {features.weight && (
+              <li className="flex items-center gap-2">
+                <Check className="h-4 w-4 text-green-500" />
+                <span>
+                  Poids: <span className="font-medium">{features.weight}g</span>
+                </span>
+              </li>
+            )}
+            {features.drop && (
+              <li className="flex items-center gap-2">
+                <Check className="h-4 w-4 text-green-500" />
+                <span>
+                  Drop: <span className="font-medium">{features.drop}mm</span>
+                </span>
+              </li>
+            )}
+            {features.cushioning && (
+              <li className="flex items-center gap-2">
+                <Check className="h-4 w-4 text-green-500" />
+                <span>
+                  Amorti:{" "}
+                  <span className="font-medium">{features.cushioning}</span>
+                </span>
+              </li>
+            )}
+            {features.support && (
+              <li className="flex items-center gap-2">
+                <Check className="h-4 w-4 text-green-500" />
+                <span>
+                  Support:{" "}
+                  <span className="font-medium">{features.support}</span>
+                </span>
+              </li>
+            )}
+          </ul>
+        </div>
+
+        {/* Recommendations */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border">
+          <h3 className="text-xl font-semibold mb-4">Recommandé pour</h3>
+          {recommendedFor && (
+            <div className="space-y-4">
+              {recommendedFor.terrainTypes && (
+                <div>
+                  <h4 className="font-medium mb-2">Types de terrain:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {recommendedFor.terrainTypes.map((terrain) => (
+                      <span
+                        key={terrain}
+                        className="px-3 py-1 bg-gray-100 rounded-full text-sm"
+                      >
+                        {terrain}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {recommendedFor.runnerLevels && (
+                <div>
+                  <h4 className="font-medium mb-2">Types de coureurs:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {recommendedFor.runnerLevels.map((type) => (
+                      <span
+                        key={type}
+                        className="px-3 py-1 bg-gray-100 rounded-full text-sm"
+                      >
+                        {type}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
